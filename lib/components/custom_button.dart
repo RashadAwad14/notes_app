@@ -4,9 +4,12 @@ import 'package:google_fonts/google_fonts.dart';
 import '../constants.dart';
 
 class CustomButton extends StatelessWidget {
-  const CustomButton({super.key, this.onTap});
+  const CustomButton({super.key, this.onTap,  this.isLoading = false});
 
 final void Function()? onTap;
+
+final bool isLoading;
+
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
@@ -19,7 +22,13 @@ final void Function()? onTap;
           borderRadius: BorderRadius.circular(10),
         ),
         child: Center(
-          child: Text(
+          child: isLoading ?  const SizedBox(
+            height: 22,
+            width: 22,
+            child: CircularProgressIndicator(
+              color: Colors.black,
+            ),
+          ) :  Text(
             'ADD',
             style: GoogleFonts.acme(
               color: Colors.black,
